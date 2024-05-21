@@ -2,7 +2,7 @@
   width: 600px;
   display: flex;
   flex-direction: column;
-  border-radius: 1px solid gray;
+  border: 1px solid gray;
 }
 
 .top {
@@ -12,11 +12,56 @@
 
 h1 {
   width: 80%;
+  padding-left: 10px;
 }
 
-.bth {
+h3 {
+  padding: 5px;
+}
+
+.btn {
   height: 30px;
   border: 1px solid gray;
   border-radius: 5%;
+  margin: 25px;
+}
+
+.loading-message,
+.error-message {
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.loading-message {
+    color: #888;
+}
+
+.error-message {
+    color: red;
+}
+
+.news-container {
+    display: none;
+}
+
+.news {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  border: 1px solid gray;
+}
+
+.post {
+  display: flex;
+  flex-direction: row;
+}
+
+.avatar {
+  width: 20%;
+  background-color: gray;
   margin: 5px;
+}
+
+.text {
+  padding: 5px;
 }
