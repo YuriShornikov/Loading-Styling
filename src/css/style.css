@@ -1,0 +1,22 @@
+.view {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 1px solid gray;
+}
+
+.top {
+  display: flex;
+  flex-direction: row;
+}
+
+h1 {
+  width: 80%;
+}
+
+.bth {
+  height: 30px;
+  border: 1px solid gray;
+  border-radius: 5%;
+  margin: 5px;
+}
