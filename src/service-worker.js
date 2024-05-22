@@ -1,25 +1,38 @@
-workbox.core.setCacheNameDetails({ prefix: 'my-app' });
+import { precacheAndRoute } from 'workbox-precaching';
+import { registerRoute } from 'workbox-routing';
+import { NetworkFirst, StaleWhileRevalidate } from 'workbox-strategies';
+import { setCacheNameDetails } from 'workbox-core';
 
-workbox.precaching.precacheAndRoute([
+// Настройка имен кэшей
+setCacheNameDetails({
+  prefix: 'my-app',
+  suffix: 'v1',
+  precache: 'precache',
+  runtime: 'runtime-cache',
+});
+
+// Предварительное кэширование файлов
+precacheAndRoute([
   { url: '/', revision: '1' },
   { url: '/index.html', revision: '1' },
-  { url: '/style.css', revision: '1' },
-  { url: '/script.js', revision: '1' },
-  // добавьте сюда остальные файлы, которые нужно кэшировать
+  { url: '/css/style.css', revision: '1' },
+  { url: '/js/app.js', revision: '1' },
 ]);
 
-// Кэширование запросов
-workbox.routing.registerRoute(
-  new RegExp('.*\.js'),
-  new workbox.strategies.NetworkFirst()
+// Кэширование JavaScript
+registerRoute(
+  new RegExp('.*\\.js'),
+  new NetworkFirst()
 );
 
-workbox.routing.registerRoute(
-  new RegExp('.*\.css'),
-  new workbox.strategies.StaleWhileRevalidate()
+// Кэширование CSS
+registerRoute(
+  new RegExp('.*\\.css'),
+  new StaleWhileRevalidate()
 );
 
-workbox.routing.registerRoute(
-  new RegExp('.*\.html'),
-  new workbox.strategies.NetworkFirst()
+// Кэширование HTML
+registerRoute(
+  new RegExp('.*\\.html'),
+  new NetworkFirst()
 );

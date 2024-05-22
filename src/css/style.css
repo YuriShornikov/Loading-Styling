@@ -37,11 +37,13 @@ h3 {
 }
 
 .error-message {
-    color: red;
+	display: none;
+    align-items: center;
 }
 
 .news-container {
     display: none;
+	flex-direction: column;
 }
 
 .news {

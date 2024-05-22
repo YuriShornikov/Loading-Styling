@@ -1,15 +1,17 @@
 const Koa = require('koa');
 const Router = require('koa-router');
 const slow = require('koa-slow');
+const cors = require('@koa/cors');
 const app = new Koa();
 const router = new Router();
 
+app.use(cors());
+
 app.use(slow({
-  delay: 3000  // Задержка в миллисекундах
+  delay: 3000
 }));
 
-
-router.get('/news', async ctx => {
+router.get('/news', async (ctx, next) => {
   ctx.body = [
     {
       title: "Случилось что-то очень важное",
@@ -19,16 +21,13 @@ router.get('/news', async ctx => {
       title: "Сделать домашнее задание до 26 мая",
       content: "Если вы будете долго откладывать реализацию проекта, то вам предстоит в кротчайшие сроки сотворить чудо, либо воспользоваться продлением. Рекомендуем приступить сейчас же!"
     }
-    ];
+  ];
+  await next();
 });
 
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-// app.use(async ctx => {
-//   ctx.body = 'Данные загружены';
-// });
-
-app.listen(3000, () => {
-  console.log('Server running on port 3000');
+app.listen(5000, () => {
+  console.log('Server running on port 5000');
 });
